@@ -1,0 +1,58 @@
+[center][size=32px]Enchantable Signs[/size][/center]
+
+[img]http://i.imgur.com/Yme9q3i.png[/img]
+
+[left][size=16px]Using this mod you can finally enchant your signs in survival minecraft. But watch out for those nasty pigman ;)[/size][/left]
+
+[left][size=32px][url=http://freundtech.bplaced.net/files/enchantablesigns/enchantablesigns-1.0.jar|_blank]DOWNLOAD[/url][/size][/left]
+
+[left][size=18px]Screenshots[/size][/left]
+[spoiler]
+[img]http://i.imgur.com/noLaJ0w.png[/img]
+Signs can be enchanted like just like every other enchantable item.
+
+[img]http://i.imgur.com/5fj9UKZ.png[/img]
+You can get all enchantments you can get on swords except for Unbreaking (Cause signs don't break)-
+
+[img]http://i.imgur.com/HOH7B8c.png[/img]
+Zombiepigman have a 1/100 chance of spawning with an enchanted sign in hand.
+
+[img]http://i.imgur.com/WVJhyTr.png[/img]
+The sign is randomly enchanted with 20-30 levels. There is a chance of them dropping their sign.
+
+[img]http://i.imgur.com/eYk8h0d.png[/img]
+Oh. By the way: Try not to place them down ;)
+[/spoiler]
+
+[left][size=18px]Installation[/size][/left]
+[spoiler]
+[numlist]
+[*]Get the latest version of forge for 1.8 (Installer) from [url=http://files.minecraftforge.net/|_blank]here[/url].
+I tested it with 11.14.0.1296 but other versions should also work.
+Install it, start your Minecraft and close it again.
+[*]Download Enchantable Signs from [url=http://freundtech.bplaced.net/files/enchantablesigns/enchantablesigns-1.0.jar|_blank]here[/url] and put it in the mods folder inside your .minecraft folder.
+[*]You're done!
+[/numlist]
+[/spoiler]
+
+[left][size=18px]FAQ[/size][/left]
+[spoiler]
+[b]Q: Why can't I combine Signs in an Anvil?[/b]
+A:Signs don't break over time. It would be to overpowerd if you could just combine them.
+
+[b]Q: Why aren't signs keeping their enchantments when placed down and picked up again?[/b]
+A: Because that would ruin the fun ;)
+[/spoiler]
+
+[left][size=18px]Known Bugs[/size][/left]
+[spoiler]
+[list]
+[*]Empty Line on sign tooltip (I don't think that's fixable :( )
+[/list]
+[/spoiler]
+
+[left][size=18px]Sourcecode[/size][/left]
+[spoiler]
+You can get the sourcecode for this mod on [url=https://github.com/freundTech/enchantablesigns|_blank]Github[/url].
+It's licensed under LGPLv3.0.
+[/spoiler]
