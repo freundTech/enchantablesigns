@@ -1,0 +1,16 @@
+[
+{
+  "modid": "enchantablesigns",
+  "name": "Enchantable Signs",
+  "description": "Now you can finally enchant your Signs without using external Programs.\nBut watch out for those nasty Pigman!",
+  "version": "1.0",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["freundTech"],
+  "credits": "Special Thanks to the Guys from the Forge Forum for always being so helpful <3",
+  "logoFile": "assets/enchantablesigns/logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
