@@ -3,6 +3,7 @@ package freundTech.minecraft.enchantablesigns;
 import java.lang.reflect.Field;
 import java.util.Random;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -28,12 +29,12 @@ public class PigmanListener {
 	    NBTTagCompound data = pigman.getEntityData();
 
 	    if (!data.getBoolean(EnchantableSigns.MODID + "isEntityChanged")) {
-		if(rand.nextInt(100) == 0)
-		{
-		    pigman.setCurrentItemOrArmor(0, EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(EnchantableSigns.sign), 10 + rand.nextInt(21)));
-		}
-		data.setBoolean(EnchantableSigns.MODID + "isEntityChanged",
-			true);
+	    	if(rand.nextInt(100) == 0)
+	    	{
+	    		pigman.setCurrentItemOrArmor(0, EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(EnchantableSigns.sign), 10 + rand.nextInt(21)));
+	    	}
+	    	SuperSecretEasterEgg.easteregg(this.rand, pigman);
+	    	data.setBoolean(EnchantableSigns.MODID + "isEntityChanged",	true);
 	    }
 	}
     }
