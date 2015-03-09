@@ -1,12 +1,25 @@
 package freundTech.minecraft.enchantablesigns;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
 
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import scala.util.parsing.json.JSON;
+import sun.util.logging.resources.logging;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityMinecart.EnumMinecartType;
@@ -16,6 +29,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSign;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.RegistryNamespaced;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,13 +50,16 @@ import net.minecraftforge.fml.common.registry.RegistryDelegate;
 public class EnchantableSigns {
 	public static final String MODID = "enchantablesigns";
 	public static final String NAME = "Enchantable Signs";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.1";
 
 	private FMLControlledNamespacedRegistry<Item> iItemRegistry;
 	private Method addObjectRaw;
 
 	public static ToolMaterial signMaterial;
 	public static Item sign;
+	
+	public static boolean isOutdated = false;
+	public static String downloadURL;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) throws Exception {
@@ -68,8 +85,7 @@ public class EnchantableSigns {
 		modifiers.setInt(signItem, signItem.getModifiers() &~Modifier.FINAL);
 		signItem.set(null, sign);
 		
-		System.out.println(Items.sign == sign);
-		
+		FMLCommonHandler.instance().bus().register(new LoginListener());
 		MinecraftForge.EVENT_BUS.register(new PigmanListener());
 	}
 
@@ -98,6 +114,55 @@ public class EnchantableSigns {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Logger logger = FMLLog.getLogger();
+		try {
+			String json = JSONHelper.readUrl("http://freundtech.bplaced.net/files/enchantablesigns/updates.json");
+			
+			JsonElement jsonElement = new JsonParser().parse(json);
+			String currentversion = jsonElement.getAsJsonObject().get("currentversion").getAsString();
+			
+			if(currentversion != EnchantableSigns.VERSION)
+			{
+				String[] versionarray = currentversion.split("\\.");
+				String[] thisversion = EnchantableSigns.VERSION.split("\\.");
+				
+				for(int i = 0;i < Math.max(versionarray.length, thisversion.length); i++)
+				{
+					int v;
+					int t;
+					try {
+						v = Integer.parseInt(versionarray[i]);
+					} catch (Exception e) {
+						v = 0;
+					}
+					try {
+						t = Integer.parseInt(thisversion[i]);
+					} catch (Exception e) {
+						t = 0;
+					}
+					if(v > t)
+					{
+						isOutdated = true;
+						break;
+					}
+					else if(v == t) {
+						continue;
+						
+					}
+					else {
+						break;
+					}
+				}
+			}
+			
+			if(isOutdated) {
+				EnchantableSigns.downloadURL = jsonElement.getAsJsonObject().get("download").getAsString();
+			}
+			
+		} catch (Exception e) {
+			logger.warn("Couldn't check for updates");
+			e.printStackTrace();
+		}
+		
 		logger.info("|--------------------|");
 		logger.info("|     Enchantable    |");
 		logger.info("|       Signs        |");
